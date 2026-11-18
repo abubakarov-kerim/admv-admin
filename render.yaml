@@ -1,0 +1,24 @@
+# Only the administrator server. No database, disk, or paid plan.
+services:
+  - type: web
+    name: admv-admin
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: node --check server.mjs
+    startCommand: node server.mjs
+    healthCheckPath: /health
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: HOST
+        value: 0.0.0.0
+      - key: ADMV_LOGIN
+        value: adamahmadov880
+      - key: ADMV_PASSWORD
+        sync: false
+      - key: ADMV_SESSION_KEY
+        generateValue: true
+      - key: ADMV_GITHUB_TOKEN
+        sync: false
